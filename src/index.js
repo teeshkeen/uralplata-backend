@@ -12,7 +12,7 @@ const bcrypt = require('bcryptjs');
 const app = express();
 console.log('DATABASE_URL:', process.env.DATABASE_URL);
 app.use(cors({
-  origin: ['http://localhost:3000', 'https://web-production-5fda0.up.railway.app', 'http://localhost:5001', 'http://79.174.80.133:3000/'],
+  origin: ['http://79.174.80.133:3000'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
@@ -88,7 +88,7 @@ sequelize.sync({ force: false })
         console.log('Admin user created successfully');
       }
 
-      app.listen(PORT, () => {
+      app.listen(PORT, '0.0.0.0', () => {
         console.log(`Server is running on port ${PORT}`);
       });
     } catch (error) {
