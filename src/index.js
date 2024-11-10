@@ -83,10 +83,6 @@ sequelize.sync({ force: false })
         });
         console.log('Admin user created successfully');
       }
-
-      app.listen(PORT, '0.0.0.0', () => {
-        console.log(`Server is running on port ${PORT}`);
-      });
     } catch (error) {
       console.error('Error creating admin user:', error);
     }
@@ -95,6 +91,12 @@ sequelize.sync({ force: false })
     console.error('Error syncing database:', err);
   });
 
+
+  
 process.on('unhandledRejection', (err) => {
   console.log('Необработанная ошибка:', err);
+});
+
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server is running on port ${PORT}`);
 });
