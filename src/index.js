@@ -1,4 +1,5 @@
 const express = require('express');
+require('dotenv').config();
 const cors = require('cors');
 const path = require('path');
 const config = require('./config/default');
@@ -9,7 +10,7 @@ const { sequelize, User } = require('./config/database'); // Добавляем 
 const bcrypt = require('bcryptjs');
 
 const app = express();
-
+console.log('DATABASE_URL:', process.env.DATABASE_URL);
 app.use(cors({
   origin: ['http://localhost:3000', 'https://web-production-5fda0.up.railway.app', 'http://localhost:5001'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
