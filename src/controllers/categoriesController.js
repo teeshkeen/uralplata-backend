@@ -1,4 +1,4 @@
-const { Category } = require('../config/database');
+const { Category, Product } = require('../config/database');
 
 const categoriesController = {
   async getCategories(req, res) {
@@ -70,21 +70,25 @@ const categoriesController = {
 async deleteCategory(req, res) {
   try {
     const { id } = req.params;
-    
+    console.log(`Attempting to delete category with ID: ${id}`); // Логирование ID категории
+
     // Находим категорию
     const category = await Category.findByPk(id);
-    
+
     if (!category) {
+      console.log('Category not found'); // Логирование, если категория не найдена
       return res.status(404).json({ error: 'Category not found' });
     }
 
     // Удаляем все связанные продукты
-    await Product.destroy({
-      where: { categoryId: id }
+    const deletedProductsCount = await Product.destroy({
+      where: { categoryId: id },
     });
+    console.log(`Deleted ${deletedProductsCount} products related to category ID: ${id}`); // Логирование количества удалённых продуктов
 
     // Удаляем саму категорию
     await category.destroy();
+    console.log(`Successfully deleted category ID: ${id}`); // Логирование успешного удаления категории
 
     res.status(200).json({ message: 'Category and related products deleted successfully' });
   } catch (error) {

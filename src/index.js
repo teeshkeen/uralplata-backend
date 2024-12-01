@@ -12,7 +12,7 @@ const bcrypt = require('bcryptjs');
 const app = express();
 console.log('DATABASE_URL:', process.env.DATABASE_URL);
 app.use(cors({
-  origin: ['http://79.174.80.133:3000'],
+  origin: ['http://79.174.80.133:3000', 'https://уралплата.рф/'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,

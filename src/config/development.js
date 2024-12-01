@@ -5,7 +5,7 @@ module.exports = {
       expiresIn: '1h'
     },
     cors: {
-      origin: 'http://79.174.80.133:3000/',
+      origin: 'https://уралплата.рф/',
       credentials: true
     },
     uploads: {
